@@ -1,6 +1,8 @@
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import Link from "next/link";
 
+
+
 export default function Home() {
   return (
     <div className="h-screen w-screen  bg-neutral-950 relative flex flex-col items-center justify-center antialiased">

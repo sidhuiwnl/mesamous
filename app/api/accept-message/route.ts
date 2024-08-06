@@ -1,4 +1,7 @@
-import prisma from "@/app/prismaclient/db";
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
+
+
 import { auth } from "@clerk/nextjs/server";
 
 export async function POST(request: Request) {

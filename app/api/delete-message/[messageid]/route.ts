@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server";
-import prisma from "@/app/prismaclient/db";
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
 
 
 export async function DELETE(request:NextRequest,
