@@ -4,7 +4,7 @@ import { auth } from "@clerk/nextjs/server";
 export async function POST(request: Request) {
   const authUser = auth();
   
-  const { isAcceptingMessages,email } = await request.json();
+  const { isAcceptingMessage,email } = await request.json();
 
   if (!authUser.userId) throw new Error("Unauthorized");
 
@@ -21,7 +21,7 @@ export async function POST(request: Request) {
         id: user.id,
       },
       data: {
-        isAcceptingMessage: isAcceptingMessages,
+        isAcceptingMessage: isAcceptingMessage,
       },
     });
 

@@ -71,7 +71,7 @@ function UserDashboard() {
     try {
       await axios.post('/api/accept-message',{
         email :  user?.emailAddresses[0]?.emailAddress,
-          isAcceptingMessages : checked
+          isAcceptingMessage : checked
         }
       );
       toast({
