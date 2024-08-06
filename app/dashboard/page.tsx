@@ -12,7 +12,7 @@ import axios from "axios"
 import { ToastAction } from "@/components/ui/toast"
 import { MessageCard } from "@/components/MessageCard"
 import { useMemo } from "react"
-
+import NotSignedIn from "@/components/NotSignedIn"
 
 function UserDashboard() {
   const[messages,setMessages] = useState<Message[]>([]);
@@ -162,10 +162,7 @@ function MainDashboard() {
       {isSignedIn ? (
         <UserDashboard />
       ) : (
-        <div>
-          <Navbar/>
-          Please sign in to view the page
-          </div>
+        <NotSignedIn/>
       )}
     </>
   )

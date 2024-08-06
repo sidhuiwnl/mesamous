@@ -6,7 +6,7 @@ import { useUser } from "@clerk/nextjs";
 import { ToastAction } from "@/components/ui/toast";
 import { useEffect, useCallback } from "react";
 import axios from "axios"
-
+import { Button } from "./ui/button";
 
 
 export default function Navbar() {
@@ -50,9 +50,9 @@ export default function Navbar() {
   }, [isLoaded,isSignedIn,user,showToast]);
 
   return (
-    <div className="w-full flex justify-between items-center p-7 bg-slate-900">
+    <div className="w-full flex justify-between items-center p-7 border-b bg-black">
       <div>
-        <h1 className="text-white text-xl">Anonymous MSG</h1>
+        <h1 className=" text-white text-lg hover:underline">Mesamous</h1>
       </div>
       <div>
         <SignedIn>
@@ -60,9 +60,9 @@ export default function Navbar() {
         </SignedIn>
         <SignedOut>
           <SignInButton>
-            <button className="text-slate-900 bg-white px-2 py-1 font-semibold border rounded">
+            <Button>
               Sign In
-            </button>
+            </Button>
           </SignInButton>
         </SignedOut>
       </div>
