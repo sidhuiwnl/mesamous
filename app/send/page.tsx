@@ -3,14 +3,21 @@
 import { toast } from "sonner";
 import { useSession } from "@/lib/auth-client";
 import { useRef } from "react";
+import { useState,useEffect } from "react";
 
 export default function Send() {
   const inputRef = useRef<HTMLInputElement>(null);
-
   const session = useSession();
-  const username = session.data?.user.name;
-
-  const anonUrl = `http://localhost:3000/${username?.replace(/\s+/g, "")}`;
+  const name = session.data?.user.name
+  const [anonUrl, setAnonUrl] = useState("");
+  
+  useEffect(() => {
+    if (session.data?.user.name) {
+      const currentUrl = window.location.href;
+      const username = session.data.user.name.replace(/\s+/g, "");
+      setAnonUrl(`${currentUrl}/${username}`);
+    }
+  }, [session.data]);
 
   const copyUrl = () => {
     if (inputRef.current) {
@@ -19,11 +26,14 @@ export default function Send() {
     }
   };
 
+  if (!session.data) {
+    return <p>Loading...</p>;
+  }
   return (
     <div className="w-screen h-screen p-4">
       <div>
         <h1 className="text-6xl font-bold antialiased tracking-tighter">
-          Copy Your Anonymous URL {username && `(${username})`}.
+          Copy Your Anonymous URL {name && `(${name})`}.
         </h1>
         <input
           ref={inputRef}
