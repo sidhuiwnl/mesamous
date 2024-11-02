@@ -3,17 +3,17 @@
 import { toast } from "sonner";
 import { useSession } from "@/lib/auth-client";
 import { useRef } from "react";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export default function Send() {
   const inputRef = useRef<HTMLInputElement>(null);
   const session = useSession();
-  const name = session.data?.user.name
+  const name = session.data?.user.name;
   const [anonUrl, setAnonUrl] = useState("");
-  
+
   useEffect(() => {
     if (session.data?.user.name) {
-      const currentUrl = window.location.href;
+      const currentUrl = window.location.origin;
       const username = session.data.user.name.replace(/\s+/g, "");
       setAnonUrl(`${currentUrl}/${username}`);
     }
@@ -29,25 +29,31 @@ export default function Send() {
   if (!session.data) {
     return <p>Loading...</p>;
   }
+
   return (
-    <div className="w-screen h-screen p-4">
-      <div>
+    <div className=" w-screen h-screen overflow-hidden">
+      <div className="relative mt-10 ml-10 ">
         <h1 className="text-6xl font-bold antialiased tracking-tighter">
-          Copy Your Anonymous URL {name && `(${name})`}.
+          Copy Your Unique URL {name && `(${name})`}.
         </h1>
-        <input
-          ref={inputRef}
-          value={anonUrl}
-          type="text"
-          readOnly
-          className="rounded-lg mt-7 w-[900px] h-10 mr-2 bg-neutral-900 text-white p-2  border-2 border-neutral-700"
-        />
-        <button
-          className="w-[120px] rounded-lg bg-black/50 font-extrabold shadow-md p-2 bg-gradient-to-b from-neutral-600 to to-neutral-900"
-          onClick={copyUrl}
-        >
-          Copy
-        </button>
+        <div className="relative mt-7 w-[900px]">
+          <input
+            ref={inputRef}
+            value={anonUrl}
+            type="text"
+            readOnly
+            className="rounded-lg w-full h-12 bg-neutral-900 text-white p-2 pr-24 border-2 border-neutral-700"
+          />
+          <button
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 w-[100px] h-8 rounded-md font-medium shadow-md p-1 bg-white text-black"
+            onClick={copyUrl}
+          >
+            Copy
+          </button>
+        </div>
+      </div>
+      <div className="flex flex-col ml-10 mt-10">
+        <h1 className="text-6xl font-bold antialiased tracking-tighter">Anonymous Messages</h1>
       </div>
     </div>
   );
