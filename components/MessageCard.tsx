@@ -1,24 +1,7 @@
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { getMessages } from "@/server/queries";
+import { MessageCardProps,Message,MessagesResponse } from "@/lib/types";
 
-interface Message {
-  id: string;
-  message: string;
-  image: string;
-  seed: string;
-}
-
-type MessagesResponse =
-  | "Failed to retrieve messages"
-  | {
-      messages: Message[];
-      success: string;
-    };
-
-interface MessageCardProps {
-  userId: string;
-  setSpin: React.Dispatch<React.SetStateAction<boolean>>;
-}
 
 const MessageCard = forwardRef<
   { fetchMessages: () => Promise<void> },

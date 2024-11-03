@@ -23,3 +23,8 @@ export type MessagesResponse =
       messages: Message[];
       success: string;
     };
+    
+export interface MessageCardProps {
+      userId: string;
+      setSpin: React.Dispatch<React.SetStateAction<boolean>>;
+}
