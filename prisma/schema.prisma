@@ -24,7 +24,7 @@ model User {
   createdAt     DateTime
   updatedAt     DateTime
   account       Account[]
-
+  messages      Messages[]
   @@unique([email])
   @@map("user")
 }
@@ -64,3 +64,15 @@ model Verification {
 
   @@map("verification")
 }
+
+model Messages{
+  id        String @id
+  message   String
+  userId    String
+  user      User   @relation(fields: [userId],references: [id],onDelete: Cascade)
+  image     String
+  seed      String
+
+  @@index([userId])
+}
+

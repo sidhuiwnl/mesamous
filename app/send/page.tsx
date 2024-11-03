@@ -4,12 +4,16 @@ import { toast } from "sonner";
 import { useSession } from "@/lib/auth-client";
 import { useRef } from "react";
 import { useState, useEffect } from "react";
+import MessageCard from "@/components/MessageCard";
+
+import { RefreshCcw } from "lucide-react";
 
 export default function Send() {
   const inputRef = useRef<HTMLInputElement>(null);
   const session = useSession();
   const name = session.data?.user.name;
   const [anonUrl, setAnonUrl] = useState("");
+  const [spin, setSpin] = useState(true);
 
   useEffect(() => {
     if (session.data?.user.name) {
@@ -26,12 +30,21 @@ export default function Send() {
     }
   };
 
+  const messageCardRef = useRef<{ fetchMessages: () => Promise<void> } | null>(
+    null
+  );
+
+  function handleRefresh() {
+    setSpin(true);
+    messageCardRef.current?.fetchMessages();
+  }
+
   if (!session.data) {
     return <p>Loading...</p>;
   }
 
   return (
-    <div className=" w-screen h-screen overflow-hidden">
+    <div className=" w-screen h-screen overflow-auto">
       <div className="relative mt-10 ml-10 ">
         <h1 className="text-6xl font-bold antialiased tracking-tighter">
           Copy Your Unique URL {name && `(${name})`}.
@@ -53,7 +66,23 @@ export default function Send() {
         </div>
       </div>
       <div className="flex flex-col ml-10 mt-10">
-        <h1 className="text-6xl font-bold antialiased tracking-tighter">Anonymous Messages</h1>
+        <div className="flex space-x-6 items-center">
+          <h1 className="text-6xl font-bold antialiased tracking-tighter">
+            Anonymous Messages
+          </h1>
+          <button
+            className="bg-white text-black p-2 mt-3 rounded-lg"
+            onClick={handleRefresh}
+          >
+            <RefreshCcw className={`${spin ? "animate-spin" : ""}`} />
+          </button>
+        </div>
+
+        <MessageCard
+          userId={session.data.user.id}
+          setSpin={setSpin}
+          ref={messageCardRef}
+        />
       </div>
     </div>
   );
