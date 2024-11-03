@@ -20,6 +20,7 @@ const MessageCard = forwardRef<
       }
     } catch (error) {
       toast("An error occurred while fetching messages");
+      console.error(error)
     } finally {
       setSpin(false);
     }
