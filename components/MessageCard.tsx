@@ -52,4 +52,6 @@ const MessageCard = forwardRef<
   );
 });
 
+MessageCard.displayName = 'MessageCard';
+
 export default MessageCard;
