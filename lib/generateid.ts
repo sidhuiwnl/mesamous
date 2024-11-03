@@ -9,7 +9,7 @@ export function generateId(){
     let str = '';
 
     for(let i = 0; i <= 8; i++){
-        let number = Math.floor(Math.random() * 53);
+        const number = Math.floor(Math.random() * 53);
         str += words[number]
     }
 
