@@ -16,9 +16,9 @@ export default function Login() {
           className="bg-white text-center w-[500px] h-[50px] rounded-lg hover:opacity-90 flex items-center justify-center gap-2"
           onClick={async () => {
             await signIn.social({
-              provider: "github",
+              provider : "github",
               callbackURL : "/"
-            });
+            })
         
           }}
         >
