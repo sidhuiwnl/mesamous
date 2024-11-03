@@ -1,6 +1,6 @@
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { getMessages } from "@/server/queries";
-import { MessageCardProps, Message, MessagesResponse } from "@/lib/types";
+import { MessageCardProps, Message, MessagesResponse } from "@/app/lib/types";
 import { toast } from "sonner";
 
 const MessageCard = forwardRef<

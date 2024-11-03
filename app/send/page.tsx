@@ -1,7 +1,7 @@
 "use client";
 
 import { toast } from "sonner";
-import { useSession } from "@/lib/auth-client";
+import { useSession } from "@/app/lib/auth-client";
 import { useRef } from "react";
 import { useState, useEffect } from "react";
 import MessageCard from "@/components/MessageCard";

@@ -1,10 +1,10 @@
 "use server";
 
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/app/lib/prisma";
 
-import { generateId } from "@/lib/generateid";
-import { UserTypes } from "@/lib/types";
-import createAva from "@/lib/createAvatar";
+import { generateId } from "@/app/lib/generateid";
+import { UserTypes } from "@/app/lib/types";
+import createAva from "@/app/lib/createAvatar";
 
 
 export async function addMessage({

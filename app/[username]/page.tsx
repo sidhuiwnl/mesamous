@@ -2,7 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { addMessage } from "@/server/queries";
-import { useSession } from "@/lib/auth-client";
+import { useSession } from "@/app/lib/auth-client";
 import { toast } from "sonner";
 
 export default function User() {
