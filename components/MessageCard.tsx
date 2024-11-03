@@ -1,14 +1,13 @@
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { getMessages } from "@/server/queries";
-import { MessageCardProps,Message,MessagesResponse } from "@/lib/types";
-
+import { MessageCardProps, Message, MessagesResponse } from "@/lib/types";
+import { toast } from "sonner";
 
 const MessageCard = forwardRef<
   { fetchMessages: () => Promise<void> },
   MessageCardProps
 >(({ userId, setSpin }, ref) => {
   const [messages, setMessages] = useState<Message[] | undefined>(undefined);
-  const [error, setError] = useState("");
 
   const fetchMessages = async () => {
     try {
@@ -17,28 +16,22 @@ const MessageCard = forwardRef<
       if (typeof response !== "string" && response.success) {
         setMessages(response.messages);
       } else {
-        setError("Failed to retrieve messages");
+        toast("Failed to retrieve messages");
       }
     } catch (error) {
-      setError("An error occurred while fetching messages");
+      toast("An error occurred while fetching messages");
     } finally {
       setSpin(false);
     }
   };
 
   useImperativeHandle(ref, () => ({
-    
     fetchMessages,
   }));
 
   useEffect(() => {
-    //@typescript-eslint/no-unused-vars
     fetchMessages();
   }, [userId]);
-
-  if (error) {
-    return <div>{error}</div>;
-  }
 
   return (
     <div className="mt-5 space-y-3 grid grid-cols-4">
