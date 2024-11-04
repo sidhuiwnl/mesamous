@@ -22,8 +22,8 @@ export default function Login() {
         
           }}
         >
-          <GitHubLogoIcon className="w-5 h-5" />
-          <span className="text-sm antialiased">Continue with Github</span>
+          <GitHubLogoIcon className="w-5 h-5 text-black" />
+          <span className="text-sm antialiased text-black">Continue with Github</span>
         </button>
         
         <Link
