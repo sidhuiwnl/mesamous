@@ -4,7 +4,7 @@ export default function HomeSection() {
   const words = ["Anonymous", "Faster", "Safe"];
   return (
     <div className="h-screen flex justify-center items-center ">
-      <div className="text-4xl mx-auto font-bold">
+      <div className="text-5xl font-bold">
         The Perfect Application To Send
         <FlipWords words={words} className="text-white" duration={1000} />{" "}
         <br />
