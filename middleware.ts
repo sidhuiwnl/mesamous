@@ -1,7 +1,25 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import type { Session } from "better-auth";
+import { betterFetch } from "@better-fetch/fetch";
 
 
+export default async function authMiddleware(request : NextRequest){
+    const { data  : session }  = await betterFetch<Session>(
+        "/api/auth/get-session",
+        {
+            baseURL : request.nextUrl.origin,
+            headers : {
+                cookie: request.headers.get("cookie") || "",
+            }
+        }
+    )
+
+    if(!session){
+        return NextResponse.redirect(new URL("/login", request.url));
+    }
+    return NextResponse.next();
+}
 
 function corsMiddleware(request: NextRequest) {
   const response = NextResponse.next();
@@ -21,5 +39,5 @@ export async function middleware(request : NextRequest){
 }
 
 export const config = {
-    matcher : ["/api/:path*","/send"]
+    matcher : ["/api/:path*","/","/send"]
 }
