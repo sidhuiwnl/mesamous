@@ -18,7 +18,7 @@ export default function User() {
     try {
       const response = await addMessage({ message, user });
       reset();
-      toast(response);
+      toast(response)
     } catch (error) {
       console.error("Error sending message:", error);
     }
