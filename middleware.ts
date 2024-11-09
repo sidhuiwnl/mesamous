@@ -36,6 +36,8 @@ export async function middleware(request : NextRequest){
     if (request.nextUrl.pathname.startsWith("/api/")) {
         return corsMiddleware(request);
     }
+
+    return authMiddleware(request);
 }
 
 export const config = {

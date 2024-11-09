@@ -39,7 +39,7 @@ export default function Send() {
     messageCardRef.current?.fetchMessages();
   }
 
-  if (!session.data) {
+  if (!session?.data?.user) {
     return (
       <div className="h-screen w-screen bg-neutral-900 text-white flex justify-center items-center">
         <span className="loading loading-infinity loading-lg "></span>
