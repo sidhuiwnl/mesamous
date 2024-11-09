@@ -40,7 +40,11 @@ export default function Send() {
   }
 
   if (!session.data) {
-    return <p>Loading...</p>;
+    return (
+      <div className="h-screen w-screen bg-neutral-900 text-white flex justify-center items-center">
+        <span className="loading loading-infinity loading-lg "></span>
+      </div>
+    );
   }
 
   return (

@@ -87,6 +87,7 @@ const config: Config = {
 	  },
 	  { values: flattenColorPalette(theme("backgroundColor")), type: "color" }
 	);
-  },],
+  },require('daisyui'),
+],
 };
 export default config;

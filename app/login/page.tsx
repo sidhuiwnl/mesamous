@@ -30,7 +30,7 @@ export default function Login() {
           href={"https://x.com/sidharth_b26649"}
           className="text-zinc-500 text-sm absolute bottom-0"
         >
-          By @sidharth_b26649
+          Sidharth Babu
         </Link>
       </div>
     </div>
